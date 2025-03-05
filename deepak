@@ -4,12 +4,12 @@ trigger:
       - main
       - develop
 
-variables:
+variables: 1234
   - group: common-variables  # Store common secrets in variable groups
   - name: environmentName
     value: $[ variables['Build.SourceBranchName'] == 'main' ? 'prod' : 'dev' ]
 
-stages:
+stages: 5678
 - stage: Build
   displayName: "Build Stage"
   jobs:
