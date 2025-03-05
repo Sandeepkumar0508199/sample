@@ -9,10 +9,10 @@ variables:
   - name: environmentName
     value: $[ variables['Build.SourceBranchName'] == 'main' ? 'prod' : 'dev' ]
 
-stages:
+stages: 1
 - stage: Build
   displayName: "Build Stage"
-  jobs:
+  jobs: 1
   - job: Build
     pool:
       vmImage: "ubuntu-latest"
