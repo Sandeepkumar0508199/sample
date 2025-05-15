@@ -1,0 +1,24 @@
+name: Continuous Deployment
+
+on:
+  push:
+    branches:
+      - 'main'
+      - 'develop'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  publish:
+    uses: <organization/workflows/.github/workflows/compile.yml@main
+    with:
+      branch-name: ${{ inputs.branch-name }}
+      image-name: ${{ vars.IMAGE_NAME }}
+      image-tag: ${{ vars.IMAGE_TAG }}
+      project-path: ${{ vars.PROJECT_PATH }}
+      context-path: ${{ vars.CONTEXT_PATH }}
+      nuget-path: 'src\Nuget.config'
+      docker-windows-os: false
+    secrets: inherit
