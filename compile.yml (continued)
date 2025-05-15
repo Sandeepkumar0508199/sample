@@ -1,0 +1,34 @@
+name: Compile
+# Compile based on the input parameters
+# Reference https://github.com/marketplace/actions/run-databricks-notebook
+
+on:
+  workflow_call:
+    inputs:
+      branch-name: # id of input
+        type: string
+        description: 'Name of the repository branch. Ex: feature/12345_Title-Of-Ticket'
+        required: true
+      environment: # id of input
+        type: string
+        description: 'Deployment environment'
+        required: true
+    secrets:
+      DATABRICKS_HOST: # id of input
+        description: 'Azure data bricks host'
+      DATABRICKS_TOKEN: # id of input
+        description: 'Azure data bricks host token'
+
+jobs:
+  execution-steps:
+    environment: ${{ inputs.environment }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        id: checkout
+        uses: actions/checkout@v4.2.2
+        with:
+          ref: ${{ inputs.branch-name }}
+      
+      - name: Setup Python
+        id: setup-python
