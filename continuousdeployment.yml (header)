@@ -1,0 +1,35 @@
+name: Continuous Deployment
+
+on:
+  push:
+    branches:
+      - 'main'
+      - 'develop'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  dev-deploy:
+    uses: <organization/workflows/.github/workflows/deploy.yml@main
+    with:
+      branch-name: ${{ github.ref_name }}
+      environment: 'dev'
+    secrets: inherit
+  
+  qa-deploy:
+    needs: dev-deploy
+    uses: <organization/workflows/.github/workflows/deploy.yml@main
+    with:
+      branch-name: ${{ github.ref_name }}
+      environment: 'qa'
+    secrets: inherit
+  
+  release-deploy:
+    needs: qa-deploy
+    uses: <organization/workflows/.github/workflows/deploy.yml@main
+    with:
+      branch-name: ${{ github.ref_name }}
+      environment: 'release'
+    secrets: inherit
