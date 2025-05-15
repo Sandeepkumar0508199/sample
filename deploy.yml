@@ -1,1 +1,26 @@
+on:
+  workflow_call:
+    inputs:
+      environment: # id of input
+        description: 'Deployment environment'
+        required: true
+    secrets:
+      DATABRICKS_HOST: # id of input
+        description: 'Azure data bricks host'
+      DATABRICKS_TOKEN: # id of input
+        description: 'Azure data bricks host token'
 
+jobs:
+  execution-steps:
+    environment: ${{ inputs.environment }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        id: checkout
+        uses: actions/checkout@v4.2.2
+        with:
+          ref: ${{ inputs.branch-name }}
+      
+      - name: Setup Python
+        id: setup-python
+        uses: actions/setup-python@v5.6.0
