@@ -35,3 +35,5 @@ Would you also be available for a quick 15-minute call to align on this?
 
 Best regards,
 Sandeep
+
+ I attempted to test the parallelism in Dev. I selected two pipelines for this test, but unfortunately, both are failing with errors. I suspect that the Dev pipelines are not the refreshed versions. Could you please provide either of the two pipelines that will run in Dev without any issues? It would be extremely helpful. Since the pipelines are idempotent, can we also test the same parallelism in the release? In summary, when I execute the pipelines, they should run without any errors.
