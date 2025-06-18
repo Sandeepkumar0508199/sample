@@ -385,6 +385,12 @@ EXEC SP_GetNewDataSetRunId
 EXEC CheckRecordsInDataException 
     @BatchId = @varCOB,
     @SurveillanceId = 11;  -- Replace with specific surveillance ID
+3. Pipeline Dependencies:
+
+Which specific analytics job should be triggered after your EBS job completion?
+
+PL_TDRRequest (current approach)
+MasterPL for 2A 2B Patterns (direct integration)
 
 How do you want the TDR job trigger to be handled after our analytics pipeline completes?
 Currently, the PL_TDRRequest pipeline triggers the TDR job again after analytics completion. Do you still need this, or will TWS handle this trigger separately?
