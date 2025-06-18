@@ -385,3 +385,11 @@ EXEC SP_GetNewDataSetRunId
 EXEC CheckRecordsInDataException 
     @BatchId = @varCOB,
     @SurveillanceId = 11;  -- Replace with specific surveillance ID
+
+How do you want the TDR job trigger to be handled after our analytics pipeline completes?
+Currently, the PL_TDRRequest pipeline triggers the TDR job again after analytics completion. Do you still need this, or will TWS handle this trigger separately?
+
+2. TWS Integration Coordination:
+
+Have you already coordinated with the TWS team to integrate our "MasterPL for 2A 2B Patterns" pipeline?
+Should TWS directly call our "MasterPL for 2A 2B Patterns" pipeline after your EBS job completes, or do you still need the intermediate PL_TDRRequest pipeline?
