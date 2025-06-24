@@ -43,4 +43,15 @@ The document you provided might not meet our needs, as we rely entirely on the c
 2) Once the TDR_EBS is completed, trigger the Master_2A_2B.
 This outlines our requirements, and they are not time-sensitive.
 
+TWS Integration Request Summary
+A team member has submitted a request for TWS (Tivoli Workload Scheduler) integration across DEV, QA, and REL environments. The request includes scheduling details provided in an attachment and specifies the execution requirements for each environment.
+Environment Scheduling:
+
+QA: Will be set to ICE status after testing completion
+REL: Daily execution schedule
+PROD: Requires change request (CR) approval process
+
+Proposed Trigger Workflow:
+The integration establishes an automated sequence where the "NY-TDR-LOAD-EBS" data load completion triggers the "Master 2A 2B patterns" pipeline, which upon completion then triggers the "PL_CCAMSRequest" pipeline. This creates an end-to-end automated workflow from data loading through surveillance pattern execution to final request processing.
+
  I attempted to test the parallelism in Dev. I selected two pipelines for this test, but unfortunately, both are failing with errors. I suspect that the Dev pipelines are not the refreshed versions. Could you please provide either of the two pipelines that will run in Dev without any issues? It would be extremely helpful. Since the pipelines are idempotent, can we also test the same parallelism in the release? In summary, when I execute the pipelines, they should run without any errors.
